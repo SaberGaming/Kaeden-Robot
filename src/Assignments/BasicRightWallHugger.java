@@ -1,4 +1,4 @@
-package demos;
+package Assignments;
 
 import java.io.IOException;
 
@@ -7,46 +7,70 @@ import org.jointheleague.ecolban.rpirobot.IRobotInterface;
 import org.jointheleague.ecolban.rpirobot.SimpleIRobot;
 
 public class BasicRightWallHugger extends IRobotAdapter {
-	Sonar sonar = new Sonar();
-	
+	//Sonar sonar = new Sonar();
+	int counter = 0;
+	Camera cam;
 	public BasicRightWallHugger(IRobotInterface iRobot) {
 		super(iRobot);
-	}
-
-	public static void main(String[] args) throws Exception {
+	}	public static void main(String[] args) throws Exception {
+		Camera cam;
 		System.out.println("Try event listner, rev Monday 2030");
 		IRobotInterface base = new SimpleIRobot();
 		BasicRightWallHugger rob = new BasicRightWallHugger(base);
 		rob.setup();
 		while(rob.loop()){}
 		rob.shutDown();
-		
 	}
 
 	
 	
 	private void setup() throws Exception {
 		//SETUP CODE GOES HERE!!!!!
+		
+		cam = new Camera(50,50);
 	}
 	
 	private boolean loop() throws Exception{
+		int x = 2;
 		//LOOP CODE GOES HERE!!!!!
 		readSensors(100);
 		int[] lightBumpReadings = getLightBumps();
-		driveDirect(150, 50);
+		counter++;
+		driveDirect(680,240);
+		if(counter==100){
+		cam.takeRGBPicture();
+		cam.setTimeout(1000);
+		counter=0;
+		double red = cam.getRedPercentage(100, true);
+		double green = cam.getGreenPercentage(100, true);
 		
-		if(lightBumpReadings[3] > 0){
-			driveDirect(-200, 250);
-			sleep(150);
+		if(red > 49) {
+			driveDirect(-100, -100);
+			Thread.sleep(1000);
 		}
-		if(lightBumpReadings[4] > 0){
-			driveDirect(-200, 250);
-			sleep(150);
+		if (green > 49){
+			driveDirect(0,0);
+			Thread.sleep(1000);
+	
 		}
-		if(lightBumpReadings[5] > 0){
+}
+		if(lightBumpReadings[3] > 100){
 			driveDirect(-200, 250);
-			sleep(150);
+			sleep(100);
 		}
+		if(lightBumpReadings[4] > 100){
+			driveDirect(-200, 250);
+			sleep(100);
+		}
+		if(lightBumpReadings[5] > 100){
+			driveDirect(-200, 250);
+			sleep(100);
+		}
+		//System.out.println("Light " + lightBumpReadings);
+	if (isBumpLeft() || isBumpRight()) {
+		driveDirect(-260, -250);
+		sleep(500);
+	}
 		return true;
 	}
 	

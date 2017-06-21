@@ -23,7 +23,8 @@ public class LightSensorDemo extends IRobotAdapter {
 	}
 
 	private void setup() throws Exception {
-		driveDirect(500,500);
+		
+	
 	}
 	
 	private boolean loop() throws Exception{
@@ -38,37 +39,42 @@ public class LightSensorDemo extends IRobotAdapter {
 		//if the sensors don't detect anything, they return 0
 		//otherwise they return some positive integer
 		//the higher the integer the closer the object
-
-		if(lightBumpReadings[0] > 0){
-			driveDirect(200, -200);
-			sleep(500);
-			driveDirect(0, 0);
-			
-		}else if(lightBumpReadings[1] > 0){
-			driveDirect(200, -200);
-			sleep(500);
-			
-			driveDirect(0, 0);
-			
-		}else if(lightBumpReadings[2] > 0){
-			driveDirect(-200, -200);
-			sleep(500);
-			driveDirect(0, 0);
+		driveDirect(700,700);
 		
-		}else if(lightBumpReadings[3] > 0){
-			driveDirect(-200, -200);
+		if(lightBumpReadings[0] > 0){
+			driveDirect(725, 700);
 			sleep(500);
-			driveDirect(0, 0);
-	
-		}else if(lightBumpReadings[4] > 0){
-			driveDirect(-200, 200);
-			sleep(500);
-			driveDirect(0, 0);
 			
-		}else if(lightBumpReadings[5] > 0){
-			driveDirect(-200, 200);
+			
+		}
+		if(lightBumpReadings[1] > 0){
+			driveDirect(725, 700);
+			sleep(500);
+			
+			
+			
+		}
+		if(lightBumpReadings[2] > 0){
+			driveDirect(-1000, -1000);
+			sleep(5000);
+			
+		}
+		if(lightBumpReadings[3] > 0){
+			driveDirect(-1000,-1000);
+			sleep(5000);
+		
+	
+		}
+		if(lightBumpReadings[4] > 0){
+			driveDirect(700,725 );
+			sleep(500);
+			
+			
+		}
+		if(lightBumpReadings[5] > 0){
+			driveDirect(700,725);
 		sleep(500);
-			driveDirect(0, 0);
+			
 			
 		}
 		

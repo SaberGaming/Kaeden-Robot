@@ -27,6 +27,11 @@ public class AssignmentCode extends IRobotAdapter {
 	
 	private void setup() throws Exception {
 		//SETUP CODE GOES HERE!!!!!
+	driveDirect(1000,1000);
+	sleep(1000);
+	driveDirect(100,100);
+	sleep(1000);
+	driveDirect(0,0);
 	}
 	
 	private boolean loop() throws Exception{
